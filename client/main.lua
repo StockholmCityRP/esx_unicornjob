@@ -499,7 +499,7 @@ function OpenBillingMenu()
       if player ~= -1 and distance <= 3.0 then
 
         menu.close()
-        if amount == nil then
+        if amount == nil or amount < 0 then
             ESX.ShowNotification(_U('amount_invalid'))
         else
             TriggerServerEvent('esx_billing:sendBill', GetPlayerServerId(player), 'society_unicorn', _U('billing'), amount)
@@ -532,6 +532,7 @@ function OpenGetStocksMenu()
       'default', GetCurrentResourceName(), 'stocks_menu',
       {
         title    = _U('unicorn_stock'),
+		align    = 'bottom-right',
         elements = elements
       },
       function(data, menu)
@@ -593,6 +594,7 @@ ESX.TriggerServerCallback('esx_unicornjob:getPlayerInventory', function(inventor
       'default', GetCurrentResourceName(), 'stocks_menu',
       {
         title    = _U('inventory'),
+		align    = 'bottom-right',
         elements = elements
       },
       function(data, menu)
@@ -650,6 +652,7 @@ function OpenGetFridgeStocksMenu()
       'default', GetCurrentResourceName(), 'fridge_menu',
       {
         title    = _U('unicorn_fridge_stock'),
+		align    = 'bottom-right',
         elements = elements
       },
       function(data, menu)
@@ -711,6 +714,7 @@ ESX.TriggerServerCallback('esx_unicornjob:getPlayerInventory', function(inventor
       'default', GetCurrentResourceName(), 'fridge_menu',
       {
         title    = _U('fridge_inventory'),
+		align    = 'bottom-right',
         elements = elements
       },
       function(data, menu)
@@ -837,7 +841,7 @@ function OpenShopMenu(zone)
         local item = Config.Zones[zone].Items[i]
 
         table.insert(elements, {
-            label     = item.label .. ' - <span style="color:red;">$' .. item.price .. ' </span>',
+            label     = item.label .. ' - <span style="color:green;">$' .. item.price .. ' </span>',
             realLabel = item.label,
             value     = item.name,
             price     = item.price
@@ -851,6 +855,7 @@ function OpenShopMenu(zone)
         'default', GetCurrentResourceName(), 'unicorn_shop',
         {
             title    = _U('shop'),
+			align    = 'bottom-right',
             elements = elements
         },
         function(data, menu)
