@@ -10,7 +10,7 @@ INSERT INTO `addon_account` (name, label, shared) VALUES
 
 INSERT INTO `addon_inventory` (name, label, shared) VALUES
   (@society_name, @job_Name_Caps, 1),
-  ('society_unicorn_fridge', 'Unicorn (frigo)', 1)
+  ('society_unicorn_fridge', 'Unicorn (fridge)', 1)
 ;
 
 INSERT INTO `datastore` (name, label, shared) VALUES 
@@ -22,10 +22,10 @@ INSERT INTO `jobs` (name, label, whitelisted) VALUES
 ;
 
 INSERT INTO `job_grades` (job_name, grade, name, label, salary, skin_male, skin_female) VALUES
-  (@job_name, 0, 'barman', 'Barman', 300, '{}', '{}'),
-  (@job_name, 1, 'dancer', 'Danseur', 300, '{}', '{}'),
-  (@job_name, 2, 'viceboss', 'Co-gérant', 500, '{}', '{}'),
-  (@job_name, 3, 'boss', 'Gérant', 600, '{}', '{}')
+  (@job_name, 0, 'barman', 'Bartender', 300, '{}', '{}'),
+  (@job_name, 1, 'dancer', 'Dancer', 300, '{}', '{}'),
+  (@job_name, 2, 'viceboss', 'Co-Manager', 500, '{}', '{}'),
+  (@job_name, 3, 'boss', 'Manager', 600, '{}', '{}')
 ;
 
 INSERT INTO `items` (`name`, `label`, `limit`) VALUES  
@@ -34,31 +34,31 @@ INSERT INTO `items` (`name`, `label`, `limit`) VALUES
     ('rhum', 'Rhum', 5),
     ('whisky', 'Whisky', 5),
     ('tequila', 'Tequila', 5),
-    ('martini', 'Martini blanc', 5),
+    ('martini', 'White Martini', 5),
     ('soda', 'Soda', 5),
-    ('jusfruit', 'Jus de fruits', 5),
+    ('jusfruit', 'Fruit juice', 5),
     ('icetea', 'Ice Tea', 5),
     ('energy', 'Energy Drink', 5),
     ('drpepper', 'Dr. Pepper', 5),
-    ('limonade', 'Limonade', 5),
-    ('bolcacahuetes', 'Bol de cacahuètes', 5),
-    ('bolnoixcajou', 'Bol de noix de cajou', 5),
-    ('bolpistache', 'Bol de pistaches', 5),
-    ('bolchips', 'Bol de chips', 5),
-    ('saucisson', 'Saucisson', 5),
-    ('grapperaisin', 'Grappe de raisin', 5),
+    ('limonade', 'Lemonade', 5),
+    ('bolcacahuetes', 'Bowl of peanuts', 5),
+    ('bolnoixcajou', 'Bowl of cashew nuts', 5),
+    ('bolpistache', 'Bowl of pistachios', 5),
+    ('bolchips', 'Bowl of crisps', 5),
+    ('saucisson', 'Sausage', 5),
+    ('grapperaisin', 'Bunch of grapes', 5),
     ('jagerbomb', 'Jägerbomb', 5),
     ('golem', 'Golem', 5),
-    ('whiskycoca', 'Whisky-coca', 5),
+    ('whiskycoca', 'Whisky-coke', 5),
     ('vodkaenergy', 'Vodka-energy', 5),
-    ('vodkafruit', 'Vodka-jus de fruits', 5),
-    ('rhumfruit', 'Rhum-jus de fruits', 5),
+    ('vodkafruit', 'Vodka-fruit juice', 5),
+    ('rhumfruit', 'Rhum-fruit juice', 5),
     ('teqpaf', "Teq'paf", 5),
-    ('rhumcoca', 'Rhum-coca', 5),
+    ('rhumcoca', 'Rhum-coke', 5),
     ('mojito', 'Mojito', 5),
-    ('ice', 'Glaçon', 5),
-    ('mixapero', 'Mix Apéritif', 3),
-    ('metreshooter', 'Mètre de shooter', 3),
-    ('jagercerbere', 'Jäger Cerbère', 3),
-    ('menthe', 'Feuille de menthe', 10)
+    ('ice', 'Ice', 5),
+    ('mixapero', 'Aperitif Mix', 3),
+    ('metreshooter', 'Shooter meter', 3),
+    ('jagercerbere', 'Jäger Cerberus', 3),
+    ('menthe', 'Mint leaf', 10)
 ;
