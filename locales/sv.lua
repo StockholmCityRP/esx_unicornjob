@@ -1,4 +1,9 @@
 Locales['sv'] = {
+
+	-- Custom
+	['not_enough_in_society'] = 'det finns ~r~inte~w~ tillräckligt av ~r~det objektet~w~ i föreningen!',
+	['player_cannot_hold'] = 'du har ~r~inte~w~ tillräckligt med ~y~utrymme~w~ för att hålla det!',
+  
     -- Cloakroom
     ['cloakroom']                = 'Garderob',
     ['citizen_wear']             = 'Civil kläder',

@@ -13,23 +13,28 @@ TriggerEvent('esx_society:registerSociety', 'unicorn', 'Unicorn', 'society_unico
 RegisterServerEvent('esx_unicornjob:getStockItem')
 AddEventHandler('esx_unicornjob:getStockItem', function(itemName, count)
 
-  local _source = source
-  local xPlayer = ESX.GetPlayerFromId(_source)
+	local _source = source
+	local xPlayer = ESX.GetPlayerFromId(_source)
+	local sourceItem = xPlayer.getInventoryItem(itemName)
+	TriggerEvent('esx_addoninventory:getSharedInventory', 'society_unicorn', function(inventory)
 
-  TriggerEvent('esx_addoninventory:getSharedInventory', 'society_unicorn', function(inventory)
+		local item = inventory.getItem(itemName)
 
-    local item = inventory.getItem(itemName)
-
-    if item.count >= count then
-      inventory.removeItem(itemName, count)
-      xPlayer.addInventoryItem(itemName, count)
-    else
-      TriggerClientEvent('esx:showNotification', xPlayer.source, _U('quantity_invalid'))
-    end
-
-    TriggerClientEvent('esx:showNotification', xPlayer.source, _U('you_removed') .. count .. ' ' .. item.label)
-
-  end)
+		-- is there enough in the society?
+		if count > 0 and item.count >= count then
+		
+			-- can the player carry the said amount of x item?
+			if sourceItem.limit ~= -1 and (sourceItem.count + count) > sourceItem.limit then
+				TriggerClientEvent('esx:showNotification', _source, _U('player_cannot_hold'))
+			else
+				inventory.removeItem(itemName, count)
+				xPlayer.addInventoryItem(itemName, count)
+				TriggerClientEvent('esx:showNotification', _source, _U('you_removed') .. count .. ' ' .. item.label)
+			end
+		else
+			TriggerClientEvent('esx:showNotification', _source, _U('not_enough_in_society'))
+		end
+	end)
 
 end)
 
@@ -44,24 +49,24 @@ end)
 RegisterServerEvent('esx_unicornjob:putStockItems')
 AddEventHandler('esx_unicornjob:putStockItems', function(itemName, count)
 
-  local _source = source
-  local xPlayer = ESX.GetPlayerFromId(_source)
+	local _source = source
+	local xPlayer = ESX.GetPlayerFromId(_source)
 
-  TriggerEvent('esx_addoninventory:getSharedInventory', 'society_unicorn', function(inventory)
+	TriggerEvent('esx_addoninventory:getSharedInventory', 'society_unicorn', function(inventory)
 
-    local item = inventory.getItem(itemName)
-    local playerItemCount = xPlayer.getInventoryItem(itemName).count
+		local item = inventory.getItem(itemName)
+		local playerItemCount = xPlayer.getInventoryItem(itemName).count
 
-    if item.count >= 0 and count <= playerItemCount then
-      xPlayer.removeInventoryItem(itemName, count)
-      inventory.addItem(itemName, count)
-    else
-      TriggerClientEvent('esx:showNotification', xPlayer.source, _U('invalid_quantity'))
-    end
+		if item.count >= 0 and count <= playerItemCount then
+			xPlayer.removeInventoryItem(itemName, count)
+			inventory.addItem(itemName, count)
+		else
+			TriggerClientEvent('esx:showNotification', xPlayer.source, _U('invalid_quantity'))
+		end
 
-    TriggerClientEvent('esx:showNotification', xPlayer.source, _U('you_added') .. count .. ' ' .. item.label)
+		TriggerClientEvent('esx:showNotification', xPlayer.source, _U('you_added') .. count .. ' ' .. item.label)
 
-  end)
+	end)
 
 end)
 
@@ -69,23 +74,28 @@ end)
 RegisterServerEvent('esx_unicornjob:getFridgeStockItem')
 AddEventHandler('esx_unicornjob:getFridgeStockItem', function(itemName, count)
 
-  local _source = source
-  local xPlayer = ESX.GetPlayerFromId(_source)
+	local _source = source
+	local xPlayer = ESX.GetPlayerFromId(_source)
+	local sourceItem = xPlayer.getInventoryItem(itemName)
+	TriggerEvent('esx_addoninventory:getSharedInventory', 'society_unicorn_fridge', function(inventory)
 
-  TriggerEvent('esx_addoninventory:getSharedInventory', 'society_unicorn_fridge', function(inventory)
+		local item = inventory.getItem(itemName)
 
-    local item = inventory.getItem(itemName)
-
-    if item.count >= count then
-      inventory.removeItem(itemName, count)
-      xPlayer.addInventoryItem(itemName, count)
-    else
-      TriggerClientEvent('esx:showNotification', xPlayer.source, _U('quantity_invalid'))
-    end
-
-    TriggerClientEvent('esx:showNotification', xPlayer.source, _U('you_removed') .. count .. ' ' .. item.label)
-
-  end)
+		-- is there enough in the society?
+		if count > 0 and item.count >= count then
+		
+			-- can the player carry the said amount of x item?
+			if sourceItem.limit ~= -1 and (sourceItem.count + count) > sourceItem.limit then
+				TriggerClientEvent('esx:showNotification', _source, _U('player_cannot_hold'))
+			else
+				inventory.removeItem(itemName, count)
+				xPlayer.addInventoryItem(itemName, count)
+				TriggerClientEvent('esx:showNotification', _source, _U('you_removed') .. count .. ' ' .. item.label)
+			end
+		else
+			TriggerClientEvent('esx:showNotification', _source, _U('not_enough_in_society'))
+		end
+	end)
 
 end)
 
